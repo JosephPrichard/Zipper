@@ -4,22 +4,33 @@
 
 #[derive(Clone, Copy)]
 pub struct SymbolCode {
-    pub symbol: u8,
-    pub code: u32,
+    pub plain_symbol: u8,
+    pub encoded_symbol: u32,
     pub bit_len: u8
 }
 
 impl SymbolCode {
     pub fn append_bit(&self, bit: u32) -> SymbolCode {
         SymbolCode {
-            symbol: self.symbol,
-            code: self.code ^ (bit << self.bit_len),
+            plain_symbol: self.plain_symbol,
+            encoded_symbol: self.encoded_symbol ^ (bit << self.bit_len),
             bit_len: self.bit_len + 1
         }
     }
-
 }
 
-pub fn get_bit(byte: u8, n: u32) -> u8 {
-    ((byte >> n) & 1) as u8
+pub fn get_bit(num: u32, n: u32) -> u8 {
+    ((num >> n) & 1) as u8
+}
+
+pub fn set_bit(num: u32, n: u32) -> u8 {
+    ((1 << n) | num) as u8
+}
+
+pub fn get_byte(num: u32, n: u32) -> u8 {
+    ((num >> n) & 0xff) as u8
+}
+
+pub fn set_byte(num: u32, n: u32) -> u8 {
+    (((0xff as u32) << n) | num) as u8
 }
