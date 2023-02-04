@@ -1,5 +1,5 @@
 # Zipper
-Simple lossless file compression and archival format implemented in Rust. Zipper utilizes huffman coding to compress files, generally achieving a 55-65% compression ratio for the average text file. The compression works on any file type, but it works on text file types (txt, json, xml) the best. The archival format is inspired by TAR but is custom designed for simplicity. Project involved implementing the huffman coding algorithm, memory safe binary trees, and bit-layered reader/writers.
+Simple lossless file compression and archival format implemented in Rust. Zipper utilizes huffman coding to compress files, generally achieving a 55-65% compression ratio for the average text file. The compression works on any file type, but it works on text file types (txt, json, xml) the best. The archival format is inspired by TAR but is custom designed for simplicity. Project involved implementing the huffman coding algorithm, memory safe binary trees, and bit-layered reader/writers. Zipper contains no external depndencies and was primarily created to learn rust standard library.
 
 ## Compression Format
 Each compressed file is broken into two segments: the tree segment and the compressed data segment. The tree segment is laid out using depth first traversal. An internal node is represented with a 0 bit, and a leaf node with a 1 bit. A leaf node is followed by the byte the bit code decompresses into. The compressed data segment simply contains a bit sequence of each original byte compressed using the aforementioned tree.
@@ -25,6 +25,5 @@ Lists the sizes, compression ratios, and relative file name of any files in the 
 ../path/to/zipper.exe -l ../path/to/archive.zipr
 
 ## Example
-![image](https://user-images.githubusercontent.com/58538077/214616768-4b2ac0e1-bf75-4ad4-bfa6-7690a34d93a8.png)
-
+![image](https://user-images.githubusercontent.com/58538077/216788857-6a19c6a2-5770-4857-8392-3fd70f22594b.png)
 
